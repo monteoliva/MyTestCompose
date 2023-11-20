@@ -5,16 +5,15 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -29,7 +28,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
+import com.example.mytestcompose.ui.components.CountryList
 import com.example.mytestcompose.ui.components.ModalComponent
+import com.example.mytestcompose.ui.components.ModalComponent3
 import com.example.mytestcompose.ui.components.expandable.ExpandableSwipeCardItem
 import com.example.mytestcompose.ui.components.popup.PopUpWindow
 import com.example.mytestcompose.ui.theme.MyTestComposeTheme
@@ -50,14 +51,14 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun GreetingView(name: String) {
-    val coroutineScope = rememberCoroutineScope()
-    val showModal      = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
-    val openDialog     = rememberSaveable { mutableStateOf(false) }
-    val openModal      = rememberSaveable { mutableStateOf(false) }
+    val coroutineScope  = rememberCoroutineScope()
+    val showModal       = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+    val openDialog      = rememberSaveable { mutableStateOf(false) }
+    val openModal       = rememberSaveable { mutableStateOf(false) }
 
     Box(
         modifier         = Modifier.fillMaxSize(),
@@ -94,10 +95,6 @@ fun GreetingView(name: String) {
             }
         }
     }
-    if (openModal.value) {
-        openModal.value = false
-        coroutineScope.launch { showModal.show() }
-    }
     if (openDialog.value) {
         PopUpWindow(
             title     = "Janela",
@@ -110,14 +107,16 @@ fun GreetingView(name: String) {
         }
     }
 
-    ModalComponent(visibility  = showModal) {
-        Column(
-            modifier            = Modifier.fillMaxWidth().padding(32.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            Text(text = "Test Modal Example")
-        }
+    if (openModal.value) {
+        openModal.value = false
+        coroutineScope.launch { showModal.show() }
+//        ModalComponent3(
+//            onDismissRequest = { openModal.value = false }
+//        ) {
+//            CountryList()
+//        }
     }
+    ModalComponent(sheetState = showModal) { CountryList() }
 }
 
 @Preview(
