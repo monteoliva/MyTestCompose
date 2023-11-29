@@ -40,7 +40,7 @@ fun ModalComponent(
                     modifier              = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
                 ) {
-                    BottomSheetDefaults.DragHandle()
+                    BottomSheetDefaults.DragHandle(width = 100.dp)
                 }
             }
             content()

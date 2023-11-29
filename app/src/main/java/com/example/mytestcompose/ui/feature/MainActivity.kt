@@ -69,7 +69,7 @@ fun GreetingView(name: String) {
             modifier = Modifier.padding(all = 8.dp)
         ) {
             Button(onClick = { openDialog.value = true  }) {
-                Text(text = "Popwindow Open")
+                Text(text = "PopUpWindow Open")
             }
 
             Button(onClick = { openModal.value = true }) {
