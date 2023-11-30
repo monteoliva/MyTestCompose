@@ -60,7 +60,11 @@ fun ModalComponent(
 )
 @Composable
 fun ModalComponentPreview() {
-    val showModal = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Expanded)
+    val showModal = rememberModalBottomSheetState(
+        initialValue       = ModalBottomSheetValue.Expanded,
+        confirmValueChange = { it != ModalBottomSheetValue.HalfExpanded },
+        skipHalfExpanded   = false
+    )
     MyTestComposeTheme {
         ModalComponent (
             sheetState       = showModal,

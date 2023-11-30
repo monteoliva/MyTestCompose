@@ -56,9 +56,13 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingView(name: String) {
     val coroutineScope  = rememberCoroutineScope()
-    val showModal       = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     val openDialog      = rememberSaveable { mutableStateOf(false) }
     val openModal       = rememberSaveable { mutableStateOf(false) }
+    val showModal       = rememberModalBottomSheetState(
+        initialValue       = ModalBottomSheetValue.Hidden,
+        confirmValueChange = { it != ModalBottomSheetValue.HalfExpanded },
+        skipHalfExpanded   = false
+    )
 
     Box(
         modifier         = Modifier.fillMaxSize(),
