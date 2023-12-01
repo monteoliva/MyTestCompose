@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
@@ -23,6 +24,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -31,6 +35,7 @@ import kotlinx.coroutines.launch
 import com.example.mytestcompose.ui.components.CountryList
 import com.example.mytestcompose.ui.components.ModalComponent
 import com.example.mytestcompose.ui.components.ModalComponent3
+import com.example.mytestcompose.ui.components.TextFieldComponent
 import com.example.mytestcompose.ui.components.expandable.ExpandableSwipeCardItem
 import com.example.mytestcompose.ui.components.popup.PopUpWindow
 import com.example.mytestcompose.ui.theme.MyTestComposeTheme
@@ -70,7 +75,7 @@ fun GreetingView(name: String) {
     )
     {
         Column(
-            modifier = Modifier.padding(all = 8.dp)
+            modifier = Modifier.padding(all = 10.dp)
         ) {
             Button(onClick = { openDialog.value = true  }) {
                 Text(text = "PopUpWindow Open")
