@@ -19,6 +19,8 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -45,14 +47,12 @@ fun TextFieldComponent(
 
     if (keyboardOptions != null) {
         OutlinedTextField(
-            value                = text,
-            onValueChange        = { onValueChange.invoke(it) },
-            label                = { Text(text = label, color = MaterialTheme.colorScheme.onSecondary) },
-            enabled              = enabled,
-            placeholder          = { Text(text = placeholder) },
-            visualTransformation = if (passwordVisibility) VisualTransformation.None
-                                                      else PasswordVisualTransformation(),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
+            value         = text,
+            onValueChange = { onValueChange.invoke(it) },
+            label         = { Text(text = label, color = MaterialTheme.colorScheme.onSecondary) },
+            enabled       = enabled,
+            placeholder   = { Text(text = placeholder) },
+            colors        = TextFieldDefaults.outlinedTextFieldColors(
                 disabledTextColor  = borderColor,
                 focusedBorderColor = borderColor,
                 focusedLabelColor  = borderColor,
@@ -83,9 +83,56 @@ fun TextFieldComponent(
 
 @Composable
 fun TextFieldPasswordComponent(
-
+    modifier: Modifier = Modifier,
+    label: String,
+    text: String,
+    onValueChange: (String) -> Unit = {},
+    enabled:   Boolean = true,
+    focusable: Boolean = false,
+    placeholder: String  = "",
+    borderColor: Color   = MaterialTheme.colorScheme.onSecondary,
+    icon: (@Composable () -> Unit)? = null,
+    keyboardOptions: KeyboardOptions? = KeyboardOptions(imeAction = ImeAction.Done),
+    onDone: () -> Unit = {}
 ) {
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val focusRequester     = remember { FocusRequester() }
 
+    if (keyboardOptions != null) {
+        OutlinedTextField(
+            value                = text,
+            onValueChange        = { onValueChange.invoke(it) },
+            label                = { Text(text = label, color = MaterialTheme.colorScheme.onSecondary) },
+            enabled              = enabled,
+            placeholder          = { Text(text = placeholder) },
+            visualTransformation = PasswordVisualTransformation(),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                disabledTextColor  = borderColor,
+                focusedBorderColor = borderColor,
+                focusedLabelColor  = borderColor,
+                cursorColor        = borderColor,
+                backgroundColor    = MaterialTheme.colorScheme.onBackground,
+                textColor          = MaterialTheme.colorScheme.onSecondary
+            ),
+            trailingIcon    = icon,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = KeyboardActions(
+                onDone = {
+                    keyboardController?.hide()
+                    onDone.invoke()
+                }
+            ),
+            modifier = modifier
+                .fillMaxWidth()
+                .focusRequester(focusRequester)
+                .onFocusChanged {
+                    if (it.isFocused) { keyboardController?.show() }
+                }
+        )
+        LaunchedEffect(Unit) {
+            if (focusable) { focusRequester.requestFocus() }
+        }
+    }
 }
 
 
@@ -105,10 +152,16 @@ fun TextFieldComponentPreview() {
         text.value = "Valor do campo"
     MyTestComposeTheme {
         TextFieldComponent(
-            label         = "Campo Teste",
-            text          = text.value,
-            placeholder   = "Digite o text",
-            onValueChange = { text.value = it }
+            label           = "Campo Teste",
+            text            = text.value,
+            placeholder     = "Digite o text",
+            onValueChange   = { text.value = it },
+            keyboardOptions = KeyboardOptions(
+                keyboardType   = KeyboardType.Text,
+                imeAction      = ImeAction.Done,
+                autoCorrect    = true,
+                capitalization = KeyboardCapitalization.Words
+            )
         )
     }
 }
