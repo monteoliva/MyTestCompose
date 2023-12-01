@@ -19,6 +19,8 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 
 import com.example.mytestcompose.ui.theme.MyTestComposeTheme
@@ -29,8 +31,9 @@ fun TextFieldComponent(
     label: String,
     text: String,
     onValueChange: (String) -> Unit = {},
-    enabled:     Boolean = true,
-    focusable:   Boolean = false,
+    enabled:            Boolean = true,
+    focusable:          Boolean = false,
+    passwordVisibility: Boolean = true,
     placeholder: String  = "",
     borderColor: Color   = MaterialTheme.colorScheme.onSecondary,
     icon: (@Composable () -> Unit)? = null,
@@ -42,12 +45,14 @@ fun TextFieldComponent(
 
     if (keyboardOptions != null) {
         OutlinedTextField(
-            value         = text,
-            onValueChange = { onValueChange.invoke(it) },
-            label         = { Text(text = label, color = MaterialTheme.colorScheme.onSecondary) },
-            enabled       = enabled,
-            placeholder   = { Text(text = placeholder) },
-            colors        = TextFieldDefaults.outlinedTextFieldColors(
+            value                = text,
+            onValueChange        = { onValueChange.invoke(it) },
+            label                = { Text(text = label, color = MaterialTheme.colorScheme.onSecondary) },
+            enabled              = enabled,
+            placeholder          = { Text(text = placeholder) },
+            visualTransformation = if (passwordVisibility) VisualTransformation.None
+                                                      else PasswordVisualTransformation(),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
                 disabledTextColor  = borderColor,
                 focusedBorderColor = borderColor,
                 focusedLabelColor  = borderColor,
@@ -75,6 +80,15 @@ fun TextFieldComponent(
         }
     }
 }
+
+@Composable
+fun TextFieldPasswordComponent(
+
+) {
+
+}
+
+
 
 @Preview(
     name           = "Light Mode",
