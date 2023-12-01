@@ -35,7 +35,6 @@ fun TextFieldComponent(
     onValueChange: (String) -> Unit = {},
     enabled:            Boolean = true,
     focusable:          Boolean = false,
-    passwordVisibility: Boolean = true,
     placeholder: String  = "",
     borderColor: Color   = MaterialTheme.colorScheme.onSecondary,
     icon: (@Composable () -> Unit)? = null,
