@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
@@ -20,6 +21,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -28,6 +30,9 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
@@ -63,6 +68,7 @@ fun GreetingView(name: String) {
     val coroutineScope  = rememberCoroutineScope()
     val openDialog      = rememberSaveable { mutableStateOf(false) }
     val openModal       = rememberSaveable { mutableStateOf(false) }
+    val text            = remember         { mutableStateOf("") }
     val showModal       = rememberModalBottomSheetState(
         initialValue       = ModalBottomSheetValue.Hidden,
         confirmValueChange = { it != ModalBottomSheetValue.HalfExpanded },
@@ -100,6 +106,21 @@ fun GreetingView(name: String) {
                     text     = "Teste de restante do conteúdo",
                     modifier = Modifier.padding(all = 20.dp),
                     color    = Color.White
+                )
+            }
+            Row(modifier = Modifier.padding(top = 8.dp)) {
+                TextFieldComponent(
+                    label           = "Name",
+                    text            = text.value,
+                    placeholder     = "Digit your name here",
+                    onValueChange   = { text.value = it },
+                    onDone          = {},
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType   = KeyboardType.Text,
+                        imeAction      = ImeAction.Done,
+                        autoCorrect    = true,
+                        capitalization = KeyboardCapitalization.Words
+                    )
                 )
             }
         }

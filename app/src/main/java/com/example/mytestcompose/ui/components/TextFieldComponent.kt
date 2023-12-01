@@ -9,7 +9,13 @@ import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
@@ -21,9 +27,10 @@ import com.example.mytestcompose.ui.theme.MyTestComposeTheme
 fun TextFieldComponent(
     modifier: Modifier = Modifier,
     label: String,
-    value: String = "",
+    text: String,
     onValueChange: (String) -> Unit = {},
     enabled:     Boolean = true,
+    focusable:   Boolean = false,
     placeholder: String  = "",
     borderColor: Color   = MaterialTheme.colorScheme.onSecondary,
     icon: (@Composable () -> Unit)? = null,
@@ -31,14 +38,14 @@ fun TextFieldComponent(
     onDone: () -> Unit = {}
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
+    val focusRequester     = remember { FocusRequester() }
 
     if (keyboardOptions != null) {
         OutlinedTextField(
-            value         = value,
-            onValueChange = {},
+            value         = text,
+            onValueChange = { onValueChange.invoke(it) },
             label         = { Text(text = label, color = MaterialTheme.colorScheme.onSecondary) },
             enabled       = enabled,
-            modifier      = modifier.fillMaxWidth(),
             placeholder   = { Text(text = placeholder) },
             colors        = TextFieldDefaults.outlinedTextFieldColors(
                 disabledTextColor  = borderColor,
@@ -55,8 +62,17 @@ fun TextFieldComponent(
                     keyboardController?.hide()
                     onDone.invoke()
                 }
-            )
+            ),
+            modifier = modifier
+                .fillMaxWidth()
+                .focusRequester(focusRequester)
+                .onFocusChanged {
+                    if (it.isFocused) { keyboardController?.show() }
+                }
         )
+        LaunchedEffect(Unit) {
+            if (focusable) { focusRequester.requestFocus() }
+        }
     }
 }
 
@@ -71,11 +87,14 @@ fun TextFieldComponent(
 )
 @Composable
 fun TextFieldComponentPreview() {
+    val text       = remember { mutableStateOf("") }
+        text.value = "Valor do campo"
     MyTestComposeTheme {
         TextFieldComponent(
-            label       = "Campo Teste",
-            value       = "Valor do campo",
-            placeholder = "Digite o text"
+            label         = "Campo Teste",
+            text          = text.value,
+            placeholder   = "Digite o text",
+            onValueChange = { text.value = it }
         )
     }
 }
