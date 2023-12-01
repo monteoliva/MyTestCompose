@@ -26,9 +26,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -39,7 +36,6 @@ import kotlinx.coroutines.launch
 
 import com.example.mytestcompose.ui.components.CountryList
 import com.example.mytestcompose.ui.components.ModalComponent
-import com.example.mytestcompose.ui.components.ModalComponent3
 import com.example.mytestcompose.ui.components.TextFieldComponent
 import com.example.mytestcompose.ui.components.expandable.ExpandableSwipeCardItem
 import com.example.mytestcompose.ui.components.popup.PopUpWindow
