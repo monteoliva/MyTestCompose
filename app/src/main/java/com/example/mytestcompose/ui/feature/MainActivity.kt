@@ -31,7 +31,6 @@ import kotlinx.coroutines.launch
 
 import com.example.mytestcompose.ui.components.CountryList
 import com.example.mytestcompose.ui.components.ModalComponent
-import com.example.mytestcompose.ui.components.biometric.BiometricAuthenticate
 import com.example.mytestcompose.ui.components.biometric.isValidBiometric
 import com.example.mytestcompose.ui.components.expandable.ExpandableSwipeCardItem
 import com.example.mytestcompose.ui.components.popup.PopUpWindow
@@ -57,12 +56,12 @@ class MainActivity : FragmentActivity() {
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
 fun GreetingView(name: String) {
-    val coroutineScope  = rememberCoroutineScope()
-    val openDialog      = rememberSaveable { mutableStateOf(false) }
-    val openModal       = rememberSaveable { mutableStateOf(false) }
-    val openBiometric   = rememberSaveable { mutableStateOf(false) }
-    val text            = remember         { mutableStateOf("") }
-    val showModal       = rememberModalBottomSheetState(
+    val coroutineScope       = rememberCoroutineScope()
+    val openDialog           = rememberSaveable { mutableStateOf(false) }
+    val openModal            = rememberSaveable { mutableStateOf(false) }
+    val openBiometric        = rememberSaveable { mutableStateOf(false) }
+    val text                 = remember         { mutableStateOf("") }
+    val showModal            = rememberModalBottomSheetState(
         initialValue       = ModalBottomSheetValue.Hidden,
         confirmValueChange = { it != ModalBottomSheetValue.HalfExpanded },
         skipHalfExpanded   = false
@@ -147,7 +146,10 @@ fun GreetingView(name: String) {
     }
     ModalComponent(sheetState = showModal) { CountryList() }
 
-    BiometricAuthenticate(openBiometric)
+    if (openBiometric.value) {
+        openBiometric.value = false
+        BiometricStart()
+    }
 }
 
 @Preview(
