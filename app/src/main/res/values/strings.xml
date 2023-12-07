@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">MyTestCompose</string>
-    <string name="authenticationTitle">Autenticar com biometria</string>
-    <string name="authenticationSubTitle">Precisamos confirmar sua identidade.</string>
-    <string name="authenticationButtonText">Usar padrão</string>
+    <string name="authenticationTitle">Biometric Authentication</string>
+    <string name="authenticationSubTitle">Log in using your biometric credential</string>
+    <string name="authenticationButtonText">Cancel</string>
 </resources>

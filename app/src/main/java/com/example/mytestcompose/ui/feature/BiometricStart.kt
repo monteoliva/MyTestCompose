@@ -19,6 +19,7 @@ fun BiometricStart(
         .setTitle(title)
         .setSubtitle(subTitle)
         .setNegativeButtonText(buttonText)
+        .setConfirmationRequired(false)
         .build()
 
     BiometricAuthenticate(
