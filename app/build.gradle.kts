@@ -52,6 +52,7 @@ android {
 dependencies {
     // Android X
     implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.biometric:biometric:1.2.0-alpha05")
 
     // Jetpack Compose
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
@@ -68,6 +69,7 @@ dependencies {
     // Swipe
     implementation("me.saket.swipe:swipe:1.0.0")
     implementation("androidx.wear.compose:compose-material3:1.0.0-alpha15")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     // Test
     testImplementation("junit:junit:4.13.2")

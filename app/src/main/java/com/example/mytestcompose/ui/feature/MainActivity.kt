@@ -3,14 +3,11 @@ package com.example.mytestcompose.ui.feature
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
@@ -27,21 +24,20 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardCapitalization
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.fragment.app.FragmentActivity
 import kotlinx.coroutines.launch
 
 import com.example.mytestcompose.ui.components.CountryList
 import com.example.mytestcompose.ui.components.ModalComponent
-import com.example.mytestcompose.ui.components.TextFieldComponent
+import com.example.mytestcompose.ui.components.biometric.BiometricAuthenticate
+import com.example.mytestcompose.ui.components.biometric.isValidBiometric
 import com.example.mytestcompose.ui.components.expandable.ExpandableSwipeCardItem
 import com.example.mytestcompose.ui.components.popup.PopUpWindow
 import com.example.mytestcompose.ui.theme.MyTestComposeTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -64,6 +60,7 @@ fun GreetingView(name: String) {
     val coroutineScope  = rememberCoroutineScope()
     val openDialog      = rememberSaveable { mutableStateOf(false) }
     val openModal       = rememberSaveable { mutableStateOf(false) }
+    val openBiometric   = rememberSaveable { mutableStateOf(false) }
     val text            = remember         { mutableStateOf("") }
     val showModal       = rememberModalBottomSheetState(
         initialValue       = ModalBottomSheetValue.Hidden,
@@ -87,6 +84,12 @@ fun GreetingView(name: String) {
                 Text(text = "Modal Button Open")
             }
 
+            if (isValidBiometric()) {
+                Button(onClick = { openBiometric.value = true }) {
+                    Text(text = "Open Biometric Authentication")
+                }
+            }
+
             ExpandableSwipeCardItem(
                 shownContent = {
                     Text(
@@ -104,21 +107,21 @@ fun GreetingView(name: String) {
                     color    = Color.White
                 )
             }
-            Row(modifier = Modifier.padding(top = 8.dp)) {
-                TextFieldComponent(
-                    label           = "Name",
-                    text            = text.value,
-                    placeholder     = "Digit your name here",
-                    onValueChange   = { text.value = it },
-                    onDone          = {},
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType   = KeyboardType.Text,
-                        imeAction      = ImeAction.Done,
-                        autoCorrect    = true,
-                        capitalization = KeyboardCapitalization.Words
-                    )
-                )
-            }
+//            Row(modifier = Modifier.padding(top = 8.dp)) {
+//                TextFieldComponent(
+//                    label           = "Name",
+//                    text            = text.value,
+//                    placeholder     = "Digit your name here",
+//                    onValueChange   = { text.value = it },
+//                    onDone          = {},
+//                    keyboardOptions = KeyboardOptions(
+//                        keyboardType   = KeyboardType.Text,
+//                        imeAction      = ImeAction.Done,
+//                        autoCorrect    = true,
+//                        capitalization = KeyboardCapitalization.Words
+//                    )
+//                )
+//            }
         }
     }
     if (openDialog.value) {
@@ -143,6 +146,8 @@ fun GreetingView(name: String) {
 //        }
     }
     ModalComponent(sheetState = showModal) { CountryList() }
+
+    BiometricAuthenticate(openBiometric)
 }
 
 @Preview(
