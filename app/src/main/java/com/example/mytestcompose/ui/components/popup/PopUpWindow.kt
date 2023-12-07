@@ -25,6 +25,7 @@ import com.example.mytestcompose.ui.theme.MyTestComposeTheme
 @Composable
 fun PopUpWindow(
     title: String,
+    isShowTitle: Boolean = true,
     padding: Dp = 20.dp,
     onDismiss: () -> Unit,
     content: @Composable (ColumnScope.() -> Unit)
@@ -50,15 +51,15 @@ fun PopUpWindow(
             )
             {
                 Column {
-                    PopUpWindowTop(
-                        cornerSize = cornerSize,
-                        title      = title
-                    ) {
-                        onDismiss.invoke()
+                    if (isShowTitle) {
+                        PopUpWindowTop(
+                            cornerSize = cornerSize,
+                            title      = title
+                        ) {
+                            onDismiss.invoke()
+                        }
+                        Spacer(modifier = Modifier.width(8.dp))
                     }
-
-                    Spacer(modifier = Modifier.width(8.dp))
-
                     content()
                 }
             }
@@ -68,11 +69,11 @@ fun PopUpWindow(
 
 @Preview(
     name           = "Light Mode",
-    showBackground = false
+    showBackground = true
 )
 @Preview(
     uiMode         = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = false,
+    showBackground = true,
     name           = "Dark Mode"
 )
 @Composable
