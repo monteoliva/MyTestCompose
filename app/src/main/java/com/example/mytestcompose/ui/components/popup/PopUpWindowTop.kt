@@ -51,7 +51,8 @@ fun PopUpWindowTop(
     {
         Text(
             text  = title,
-            color = Color.White
+            color = Color.White,
+            style = MaterialTheme.typography.titleLarge
         )
 
         Icon(
