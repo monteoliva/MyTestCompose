@@ -12,9 +12,11 @@ import androidx.compose.ui.unit.sp
 
 import com.example.mytestcompose.R
 
-val latoRegular = FontFamily(Font(R.font.lato_regular))
-val latoBold    = FontFamily(Font(R.font.lato_bold   ))
 val latoBlack   = FontFamily(Font(R.font.lato_black  ))
+val latoBold    = FontFamily(Font(R.font.lato_bold   ))
+val latoLight   = FontFamily(Font(R.font.lato_light  ))
+val latoRegular = FontFamily(Font(R.font.lato_regular))
+val latoThin    = FontFamily(Font(R.font.lato_thin   ))
 
 // Set of Material typography styles to start with
 val Typography = Typography(
