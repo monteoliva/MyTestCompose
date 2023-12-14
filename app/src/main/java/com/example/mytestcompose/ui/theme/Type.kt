@@ -51,7 +51,7 @@ val style = Typography.bodyLarge.copy(
     )
 )
 
-val styleTitle = Typography.titleLarge.copy(
+val StyleTitle = Typography.titleLarge.copy(
     shadow = Shadow(
         color      = Color.Black,
         offset     = Offset(x = 4f, y = 4f),
