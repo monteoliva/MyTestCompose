@@ -12,35 +12,34 @@ import androidx.compose.ui.unit.sp
 
 import com.example.mytestcompose.R
 
+val latoRegular = FontFamily(Font(R.font.lato_regular))
+val latoBold    = FontFamily(Font(R.font.lato_bold   ))
+val latoBlack   = FontFamily(Font(R.font.lato_black  ))
+
 // Set of Material typography styles to start with
 val Typography = Typography(
     bodyLarge = TextStyle(
-        fontFamily    = FontFamily(Font(R.font.lato_bold)),
+        fontFamily    = latoRegular,
         fontWeight    = FontWeight.Normal,
         fontSize      = 16.sp,
         lineHeight    = 24.sp,
         letterSpacing = 0.5.sp
     ),
     labelSmall = TextStyle(
-        fontFamily    = FontFamily(Font(R.font.lato_regular)),
+        fontFamily    = latoRegular,
         fontWeight    = FontWeight.Medium,
         fontSize      = 11.sp,
         lineHeight    = 16.sp,
         letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
+    ),
     titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
+        fontFamily    = latoBold,
+        fontWeight    = FontWeight.Normal,
+        fontSize      = 22.sp,
+        lineHeight    = 28.sp,
         letterSpacing = 0.sp
-    ),*/
+    )
 )
-
-val latoRegular = FontFamily(Font(R.font.lato_regular))
-val latoBold    = FontFamily(Font(R.font.lato_bold   ))
-val latoBlack   = FontFamily(Font(R.font.lato_black  ))
 
 val style = Typography.bodyLarge.copy(
     shadow = Shadow(
