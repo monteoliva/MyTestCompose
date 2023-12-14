@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 import com.example.mytestcompose.ui.theme.MyTestComposeTheme
+import com.example.mytestcompose.ui.theme.styleTitle
 
 @Composable
 fun PopUpWindowTop(
@@ -52,7 +53,7 @@ fun PopUpWindowTop(
         Text(
             text  = title,
             color = Color.White,
-            style = MaterialTheme.typography.titleLarge
+            style = styleTitle
         )
 
         Icon(

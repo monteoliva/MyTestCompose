@@ -50,3 +50,11 @@ val style = Typography.bodyLarge.copy(
         blurRadius = 8f
     )
 )
+
+val styleTitle = Typography.titleLarge.copy(
+    shadow = Shadow(
+        color      = Color.Black,
+        offset     = Offset(x = 4f, y = 4f),
+        blurRadius = 8f
+    )
+)
