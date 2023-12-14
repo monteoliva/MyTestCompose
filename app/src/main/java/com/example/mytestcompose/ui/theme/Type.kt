@@ -43,7 +43,7 @@ val Typography = Typography(
     )
 )
 
-val style = Typography.bodyLarge.copy(
+val StyleBodyLarge = Typography.bodyLarge.copy(
     shadow = Shadow(
         color      = Color.Black,
         offset     = Offset(x = 4f, y = 4f),
