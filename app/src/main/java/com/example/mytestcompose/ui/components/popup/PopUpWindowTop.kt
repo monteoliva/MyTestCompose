@@ -26,7 +26,7 @@ import com.example.mytestcompose.ui.theme.StyleTitle
 
 @Composable
 fun PopUpWindowTop(
-    cornerSize: Dp,
+    cornerSize: Dp = 16.dp,
     title: String,
     onDismiss: () -> Unit
 ) {
