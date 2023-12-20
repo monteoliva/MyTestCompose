@@ -57,7 +57,7 @@ fun ExpandableSwipeCardItem(
         modifier                      = Modifier.padding(4.dp),
         startActions                  = listOf(reject),
         endActions                    = listOf(accept),
-        backgroundUntilSwipeThreshold = Color.White
+        backgroundUntilSwipeThreshold = Color.Transparent
     )
     {
         ExpandableCardComponent(
@@ -69,11 +69,11 @@ fun ExpandableSwipeCardItem(
 
 @Preview(
     name           = "Light Mode",
-    showBackground = true
+    showBackground = false
 )
 @Preview(
     uiMode         = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true,
+    showBackground = false,
     name           = "Dark Mode"
 )
 @Composable

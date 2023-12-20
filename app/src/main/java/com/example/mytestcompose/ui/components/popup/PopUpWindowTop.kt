@@ -67,7 +67,10 @@ fun PopUpWindowTop(
     }
 }
 
-@Preview(name = "Light Mode")
+@Preview(
+    showBackground = false,
+    name           = "Light Mode"
+)
 @Preview(
     uiMode         = Configuration.UI_MODE_NIGHT_YES,
     showBackground = false,

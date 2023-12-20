@@ -33,7 +33,7 @@ import androidx.wear.compose.material3.ContentAlpha
 @Composable
 fun ExpandableCardComponent(
     modifier: Modifier = Modifier,
-    shape: Shape = RoundedCornerShape(10.dp),
+    shape: Shape = RoundedCornerShape(size = 10.dp),
     backgroundColor: Color = MaterialTheme.colorScheme.primary,
     shownContent:  @Composable (ColumnScope.() -> Unit),
     hiddenContent: @Composable (ColumnScope.() -> Unit)
@@ -47,6 +47,7 @@ fun ExpandableCardComponent(
     Card(
         shape    = shape,
         modifier = modifier
+            .background(color = Color.Transparent)
             .fillMaxWidth()
             .animateContentSize(
                 animationSpec = tween(
@@ -61,7 +62,7 @@ fun ExpandableCardComponent(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(backgroundColor)
+                .background(color = backgroundColor)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Box(modifier = Modifier.weight(7f)) {
@@ -70,8 +71,8 @@ fun ExpandableCardComponent(
                 IconButton(
                     modifier = Modifier
                         .alpha(ContentAlpha.medium)
-                        .weight(1f)
-                        .rotate(rotationState.value),
+                        .weight(weight = 1f)
+                        .rotate(degrees = rotationState.value),
                     onClick = { expandedState.value = expandedState.value.not() }) {
                     Icon(
                         imageVector        = Icons.Filled.KeyboardArrowDown,

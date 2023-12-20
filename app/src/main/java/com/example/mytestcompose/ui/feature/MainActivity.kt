@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -40,14 +41,23 @@ class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyTestComposeTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color    = MaterialTheme.colorScheme.background
-                ) {
-                    GreetingView("Android")
-                }
-            }
+            StartScreen()
+        }
+    }
+}
+
+@Composable
+fun StartScreen() {
+    val isSystem    = isSystemInDarkTheme()
+    val isDarkTheme = remember { mutableStateOf(isSystem) }
+    MyTestComposeTheme(
+        darkTheme = isDarkTheme.value
+    ) {
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color    = MaterialTheme.colorScheme.background
+        ) {
+            GreetingView(name = "Android")
         }
     }
 }
@@ -55,7 +65,10 @@ class MainActivity : FragmentActivity() {
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
-fun GreetingView(name: String) {
+private fun GreetingView(
+    name: String,
+    isPreview: Boolean = false
+) {
     val coroutineScope       = rememberCoroutineScope()
     val openDialog           = rememberSaveable { mutableStateOf(false) }
     val openModal            = rememberSaveable { mutableStateOf(false) }
@@ -83,9 +96,11 @@ fun GreetingView(name: String) {
                 Text(text = "Modal Button Open")
             }
 
-            if (isValidBiometric()) {
-                Button(onClick = { openBiometric.value = true }) {
-                    Text(text = "Open Biometric Authentication")
+            if (!isPreview) {
+                if (isValidBiometric()) {
+                    Button(onClick = { openBiometric.value = true }) {
+                        Text(text = "Open Biometric Authentication")
+                    }
                 }
             }
 
@@ -162,8 +177,11 @@ fun GreetingView(name: String) {
     name           = "Dark Mode"
 )
 @Composable
-fun GreetingPreview() {
+private fun GreetingPreview() {
     MyTestComposeTheme {
-        GreetingView("Android")
+        GreetingView(
+            name      = "Android",
+            isPreview = true
+        )
     }
 }
