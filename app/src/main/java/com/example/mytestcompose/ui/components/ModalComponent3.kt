@@ -44,7 +44,7 @@ fun ModalComponent3(
 
 @Preview(
     name           = "Light Mode",
-    showBackground = true
+    showBackground = false
 )
 @Preview(
     uiMode         = Configuration.UI_MODE_NIGHT_YES,
