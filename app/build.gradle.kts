@@ -64,12 +64,13 @@ dependencies {
 
     // Lifecycle
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation("androidx.activity:activity-compose:1.8.1")
+    implementation("androidx.activity:activity-compose:1.8.2")
 
     // Swipe
     implementation("me.saket.swipe:swipe:1.0.0")
     implementation("androidx.wear.compose:compose-material3:1.0.0-alpha15")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
 
     // Test
     testImplementation("junit:junit:4.13.2")

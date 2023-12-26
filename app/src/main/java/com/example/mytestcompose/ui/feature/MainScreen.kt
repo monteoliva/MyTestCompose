@@ -2,7 +2,6 @@ package com.example.mytestcompose.ui.feature
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,7 +22,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -35,6 +33,7 @@ import kotlinx.coroutines.launch
 import com.example.mytestcompose.ui.components.CountryList
 import com.example.mytestcompose.ui.components.ModalComponent
 import com.example.mytestcompose.ui.components.TextFieldComponent
+import com.example.mytestcompose.ui.components.TextFieldPasswordComponent
 import com.example.mytestcompose.ui.components.biometric.isValidBiometric
 import com.example.mytestcompose.ui.components.expandable.ExpandableSwipeCardItem
 import com.example.mytestcompose.ui.components.popup.PopUpWindow
@@ -48,7 +47,8 @@ fun MainScreen(isPreview: Boolean = false) {
     val openDialog           = rememberSaveable { mutableStateOf(false) }
     val openModal            = rememberSaveable { mutableStateOf(false) }
     val openBiometric        = rememberSaveable { mutableStateOf(false) }
-    val text                 = remember         { mutableStateOf("") }
+    val login                = remember         { mutableStateOf("") }
+    var password             = rememberSaveable { mutableStateOf("") }
     val showModal            = rememberModalBottomSheetState(
         initialValue       = ModalBottomSheetValue.Hidden,
         confirmValueChange = { it != ModalBottomSheetValue.HalfExpanded },
@@ -99,10 +99,26 @@ fun MainScreen(isPreview: Boolean = false) {
             Row(modifier = Modifier.padding(top = 8.dp)) {
                 TextFieldComponent(
                     modifier        = Modifier.fillMaxWidth(),
-                    label           = "Name",
-                    text            = text.value,
-                    placeholder     = "Digit your name here",
-                    onValueChange   = { text.value = it },
+                    label           = "Login",
+                    text            = login.value,
+                    placeholder     = "Digit your login here",
+                    onValueChange   = { login.value = it },
+                    onDone          = {},
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType   = KeyboardType.Text,
+                        imeAction      = ImeAction.Next,
+                        autoCorrect    = true,
+                        capitalization = KeyboardCapitalization.Words
+                    )
+                )
+            }
+            Row(modifier = Modifier.padding(top = 8.dp)) {
+                TextFieldPasswordComponent(
+                    modifier        = Modifier.fillMaxWidth(),
+                    label           = "Password",
+                    text            = password.value,
+                    placeholder     = "Digit your password here",
+                    onValueChange   = { password.value = it },
                     onDone          = {},
                     keyboardOptions = KeyboardOptions(
                         keyboardType   = KeyboardType.Text,
