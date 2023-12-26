@@ -46,10 +46,10 @@ fun TextFieldComponent(
         OutlinedTextField(
             value         = text,
             onValueChange = onValueChange,
-            label         = { Text(text = label) },
+            label         = { Text(text = label, color = MaterialTheme.colorScheme.onSecondary) },
             enabled       = enabled,
             modifier      = modifier,
-            placeholder   = { Text(text = placeholder) },
+            placeholder   = { Text(text = placeholder, color = MaterialTheme.colorScheme.onSecondary) },
             colors        = TextFieldDefaults.outlinedTextFieldColors(
                 disabledTextColor  = borderColor,
                 focusedBorderColor = borderColor,
