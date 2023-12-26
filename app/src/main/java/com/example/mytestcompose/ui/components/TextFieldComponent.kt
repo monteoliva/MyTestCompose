@@ -100,10 +100,9 @@ fun TextFieldPasswordComponent(
             ),
             trailingIcon    = {
                 val image = if (passwordVisible.value)
-                    painterResource(id = R.drawable.ic_visibility)
+                     painterResource(id = R.drawable.ic_visibility)
                 else painterResource(id = R.drawable.ic_visibility_off)
 
-                // Please provide localized description for accessibility services
                 val description = if (passwordVisible.value) "Hide password" else "Show password"
 
                 IconButton(onClick = {passwordVisible.value = passwordVisible.value.not()}){
