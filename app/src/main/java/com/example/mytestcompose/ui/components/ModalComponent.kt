@@ -31,7 +31,6 @@ fun ModalComponent(
     ModalBottomSheetLayout(
         sheetState           = sheetState,
         sheetShape           = RoundedCornerShape(topStart = 18.dp, topEnd = 18.dp),
-        sheetGesturesEnabled = true,
         sheetElevation       = 20.dp,
         sheetBackgroundColor = MaterialTheme.colorScheme.onBackground,
         sheetContent         = {
@@ -59,7 +58,7 @@ fun ModalComponent(
     name           = "Dark Mode"
 )
 @Composable
-fun ModalComponentPreview() {
+private fun ModalComponentPreview() {
     val showModal = rememberModalBottomSheetState(
         initialValue       = ModalBottomSheetValue.Expanded,
         confirmValueChange = { it != ModalBottomSheetValue.HalfExpanded },

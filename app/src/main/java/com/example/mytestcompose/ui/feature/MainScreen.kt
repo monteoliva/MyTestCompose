@@ -48,7 +48,7 @@ fun MainScreen(isPreview: Boolean = false) {
     val openModal            = rememberSaveable { mutableStateOf(false) }
     val openBiometric        = rememberSaveable { mutableStateOf(false) }
     val login                = remember         { mutableStateOf("") }
-    var password             = rememberSaveable { mutableStateOf("") }
+    val password             = rememberSaveable { mutableStateOf("") }
     val showModal            = rememberModalBottomSheetState(
         initialValue       = ModalBottomSheetValue.Hidden,
         confirmValueChange = { it != ModalBottomSheetValue.HalfExpanded },
