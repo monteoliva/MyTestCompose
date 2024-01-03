@@ -26,8 +26,8 @@ import com.example.mytestcompose.ui.theme.Red300
 
 @Composable
 fun SwipeCardItem(
-    onSwipeLeft:  () -> Unit,
-    onSwipeRight: () -> Unit,
+    onSwipeLeft:  () -> Unit = {},
+    onSwipeRight: () -> Unit = {},
     content: @Composable ColumnScope.() -> Unit
 ) {
     val accept  = SwipeAction(
