@@ -40,7 +40,6 @@ class MainActivity : FragmentActivity() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 private fun MyScreen(isPreview: Boolean = false) {
