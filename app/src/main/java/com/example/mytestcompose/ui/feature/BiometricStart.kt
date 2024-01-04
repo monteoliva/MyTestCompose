@@ -25,6 +25,7 @@ fun BiometricStart(
     BiometricAuthenticate(
         promptInfo      = promptInfo,
         onAuthSucceeded = { cryptoObj ->
+            cryptoObj.hashCode()
         },
         onAuthError     = { _ ->
         }

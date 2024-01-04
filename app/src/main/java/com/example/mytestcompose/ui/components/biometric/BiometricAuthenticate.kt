@@ -28,6 +28,8 @@ fun BiometricAuthenticate (
             @RequiresApi(Build.VERSION_CODES.R)
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                 super.onAuthenticationSucceeded(result)
+
+
                 onAuthSucceeded.invoke(result.cryptoObject)
             }
         }
