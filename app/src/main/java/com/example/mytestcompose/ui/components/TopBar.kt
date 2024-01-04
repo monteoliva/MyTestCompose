@@ -46,7 +46,7 @@ fun TopBar(
         title   = {
             Column {
                 Text(
-                    text  = title, //stringResource(R.string.app_name),
+                    text  = title,
                     color = MaterialTheme.colorScheme.surfaceTint,
                     style = MaterialTheme.typography.titleMedium
                 )
@@ -55,7 +55,6 @@ fun TopBar(
                     color = MaterialTheme.colorScheme.surfaceTint,
                     style = MaterialTheme.typography.titleMedium
                 )
-
             }
         },
         actions = {
