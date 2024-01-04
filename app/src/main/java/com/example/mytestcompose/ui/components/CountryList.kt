@@ -57,7 +57,6 @@ fun CountryList() {
 }
 
 
-@OptIn(ExperimentalMaterialApi::class)
 @Preview(
     name           = "Light Mode",
     showBackground = true
@@ -68,7 +67,7 @@ fun CountryList() {
     name           = "Dark Mode"
 )
 @Composable
-fun CountryListPreview() {
+private fun CountryListPreview() {
     MyTestComposeTheme {
         CountryList()
     }
