@@ -96,6 +96,7 @@ fun MainScreen(isPreview: Boolean = false) {
                     color    = Color.White
                 )
             }
+
             Row(modifier = Modifier.padding(top = 8.dp)) {
                 TextFieldComponent(
                     modifier        = Modifier.fillMaxWidth(),
@@ -145,11 +146,6 @@ fun MainScreen(isPreview: Boolean = false) {
     if (openModal.value) {
         openModal.value = false
         coroutineScope.launch { showModal.show() }
-//        ModalComponent3(
-//            onDismissRequest = { openModal.value = false }
-//        ) {
-//            CountryList()
-//        }
     }
     ModalComponent(sheetState = showModal) { CountryList() }
 

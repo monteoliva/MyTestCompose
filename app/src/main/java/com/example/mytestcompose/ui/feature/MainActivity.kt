@@ -23,6 +23,8 @@ class MainActivity : FragmentActivity() {
             StartScreen()
         }
     }
+
+
 }
 
 @Composable
