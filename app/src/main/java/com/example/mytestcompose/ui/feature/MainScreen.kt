@@ -105,6 +105,7 @@ fun MainScreen(isPreview: Boolean = false) {
                     placeholder     = "Digit your login here",
                     onValueChange   = { login.value = it },
                     onDone          = {},
+                    onNext          = {},
                     keyboardOptions = KeyboardOptions(
                         keyboardType   = KeyboardType.Text,
                         imeAction      = ImeAction.Next,
@@ -122,10 +123,8 @@ fun MainScreen(isPreview: Boolean = false) {
                     onValueChange   = { password.value = it },
                     onDone          = {},
                     keyboardOptions = KeyboardOptions(
-                        keyboardType   = KeyboardType.Text,
-                        imeAction      = ImeAction.Done,
-                        autoCorrect    = true,
-                        capitalization = KeyboardCapitalization.Words
+                        keyboardType = KeyboardType.Text,
+                        imeAction    = ImeAction.Done
                     )
                 )
             }

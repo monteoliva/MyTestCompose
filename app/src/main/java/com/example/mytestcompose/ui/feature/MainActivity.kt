@@ -80,7 +80,7 @@ private fun MyScreen(isPreview: Boolean = false) {
     name           = "Dark Mode"
 )
 @Composable
-private fun GreetingPreview() {
+private fun MyScreenPreview() {
     MyTestComposeTheme {
         MyScreen(isPreview = true)
     }

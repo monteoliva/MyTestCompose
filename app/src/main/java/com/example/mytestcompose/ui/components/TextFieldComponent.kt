@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
@@ -28,6 +29,7 @@ fun TextFieldComponent(
     placeholder: String = "",
     onValueChange: (String) -> Unit = {},
     onDone:              () -> Unit = {},
+    onNext:              () -> Unit = {},
     enabled: Boolean = true,
     borderColor: Color = MaterialTheme.colorScheme.onSecondary,
     icon: (@Composable () -> Unit)? = null,
@@ -41,9 +43,12 @@ fun TextFieldComponent(
             onValueChange = onValueChange,
             label         = { Text(text = label, color = MaterialTheme.colorScheme.onSecondary) },
             enabled       = enabled,
-            modifier      = modifier,
-            placeholder   = { Text(text = placeholder, color = MaterialTheme.colorScheme.onSecondary) },
-            colors        = TextFieldDefaults.outlinedTextFieldColors(
+            modifier      = modifier
+                .onFocusChanged {
+                    if (it.hasFocus) { keyboardController?.show() }
+                },
+            placeholder = { Text(text = placeholder, color = MaterialTheme.colorScheme.onSecondary) },
+            colors      = TextFieldDefaults.outlinedTextFieldColors(
                 disabledTextColor  = borderColor,
                 focusedBorderColor = borderColor,
                 focusedLabelColor  = borderColor,
@@ -55,6 +60,10 @@ fun TextFieldComponent(
                 onDone = {
                     keyboardController?.hide()
                     onDone.invoke()
+                },
+                onNext = {
+                    keyboardController?.hide()
+                    onNext.invoke()
                 }
             )
         )
