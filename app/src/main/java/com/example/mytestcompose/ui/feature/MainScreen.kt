@@ -63,49 +63,15 @@ fun MainScreen(isPreview: Boolean = false) {
         Column(
             modifier = Modifier.padding(all = 10.dp)
         ) {
-            Button(onClick = { openDialog.value = true  }) {
-                Text(text = "PopUpWindow Open")
-            }
-
-            Button(onClick = { openModal.value = true }) {
-                Text(text = "Modal Button Open")
-            }
-
-            if (!isPreview) {
-                if (isValidBiometric()) {
-                    Button(onClick = { openBiometric.value = true }) {
-                        Text(text = "Open Biometric Authentication")
-                    }
-                }
-            }
-
-            ExpandableSwipeCardItem(
-                shownContent = {
-                    Text(
-                        text     = "Teste de conteúdo",
-                        modifier = Modifier.padding(all = 20.dp),
-                        color    = Color.White
-                    )
-                },
-                onSwipeLeft  = { openDialog.value = true },
-                onSwipeRight = { openModal.value  = true }
-            ) {
-                Text(
-                    text     = "Teste de restante do conteúdo",
-                    modifier = Modifier.padding(all = 20.dp),
-                    color    = Color.White
-                )
-            }
-
-            Row(modifier = Modifier.padding(top = 8.dp)) {
+            Row(modifier = Modifier.padding(all = 6.dp)) {
                 TextFieldComponent(
-                    modifier        = Modifier.fillMaxWidth(),
-                    label           = "Login",
-                    text            = login.value,
-                    placeholder     = "Digit your login here",
-                    onValueChange   = { login.value = it },
-                    onDone          = {},
-                    onNext          = {},
+                    modifier     = Modifier.fillMaxWidth(),
+                    label         = "Login",
+                    text          = login.value,
+                    placeholder   = "Digit your login here",
+                    onValueChange = { login.value = it },
+                    onDone        = {},
+                    onNext        = {},
                     keyboardOptions = KeyboardOptions(
                         keyboardType   = KeyboardType.Text,
                         imeAction      = ImeAction.Next,
@@ -114,7 +80,7 @@ fun MainScreen(isPreview: Boolean = false) {
                     )
                 )
             }
-            Row(modifier = Modifier.padding(top = 8.dp)) {
+            Row(modifier = Modifier.padding(all = 6.dp)) {
                 TextFieldPasswordComponent(
                     modifier        = Modifier.fillMaxWidth(),
                     label           = "Password",
@@ -127,6 +93,47 @@ fun MainScreen(isPreview: Boolean = false) {
                         imeAction    = ImeAction.Done
                     )
                 )
+            }
+            Row(modifier = Modifier.padding(all = 6.dp)) {
+                ExpandableSwipeCardItem(
+                    shownContent = {
+                        Text(
+                            text     = "Teste de conteúdo",
+                            modifier = Modifier.padding(all = 20.dp),
+                            color    = Color.White
+                        )
+                    },
+                    onSwipeLeft  = { openDialog.value = true },
+                    onSwipeRight = { openModal.value = true }
+                ) {
+                    Text(
+                        text     = "Teste de restante do conteúdo",
+                        modifier = Modifier.padding(all = 20.dp),
+                        color    = Color.White
+                    )
+                }
+            }
+
+            // Buttons
+            Row(modifier = Modifier.padding(all = 6.dp)) {
+                Button(onClick = { openDialog.value = true }) {
+                    Text(text = "PopUpWindow Open")
+                }
+            }
+            Row(modifier = Modifier.padding(all = 6.dp)) {
+                Button(onClick = { openModal.value = true }) {
+                    Text(text = "Modal Button Open")
+                }
+            }
+
+            if (!isPreview) {
+                Row(modifier = Modifier.padding(all = 6.dp)) {
+                    if (isValidBiometric()) {
+                        Button(onClick = { openBiometric.value = true }) {
+                            Text(text = "Open Biometric Authentication")
+                        }
+                    }
+                }
             }
         }
     }
