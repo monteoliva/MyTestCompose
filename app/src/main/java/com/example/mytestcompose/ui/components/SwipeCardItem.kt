@@ -76,7 +76,7 @@ fun SwipeCardItem(
     name           = "Dark Mode"
 )
 @Composable
-fun SwipeCardItemPreview() {
+private fun SwipeCardItemPreview() {
     MyTestComposeTheme {
         SwipeCardItem(
             onSwipeLeft  = {},

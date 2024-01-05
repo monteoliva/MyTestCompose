@@ -27,7 +27,7 @@ fun PopUpWindow(
     title: String,
     isShowTitle: Boolean = true,
     padding: Dp = 20.dp,
-    onDismiss: () -> Unit,
+    onDismiss: () -> Unit = {},
     content: @Composable (ColumnScope.() -> Unit)
 ) {
     val cornerSize = 16.dp
@@ -77,7 +77,7 @@ fun PopUpWindow(
     name           = "Dark Mode"
 )
 @Composable
-fun PopUpWindowPreview() {
+private fun PopUpWindowPreview() {
     MyTestComposeTheme {
         PopUpWindow (
             title     = "Teste",

@@ -28,7 +28,7 @@ import com.example.mytestcompose.ui.theme.StyleTitle
 fun PopUpWindowTop(
     cornerSize: Dp = 16.dp,
     title: String,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit = {}
 ) {
     Row(
         verticalAlignment     = Alignment.CenterVertically,
@@ -82,6 +82,6 @@ fun PreviewTopPopUpWindow() {
         PopUpWindowTop(
             cornerSize = 16.dp,
             title      = "Title test"
-        ) {}
+        )
     }
 }
