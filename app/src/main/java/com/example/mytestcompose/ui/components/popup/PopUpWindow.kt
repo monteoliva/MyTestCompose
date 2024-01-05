@@ -34,7 +34,7 @@ fun PopUpWindow(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.Black.copy(alpha = 0.6f))
+            .background(color = Color.Black.copy(alpha = 0.8f))
     ) {
         Popup(
             alignment        = Alignment.Center,
