@@ -3,25 +3,32 @@ package com.example.mytestcompose.ui.components
 import android.content.res.Configuration
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
 import androidx.compose.material.TextFieldDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 
+import com.example.mytestcompose.R
 import com.example.mytestcompose.ui.theme.MyTestComposeTheme
 
 @Composable
-fun TextFieldComponent(
+fun TextFieldPasswordComponent(
     modifier: Modifier = Modifier,
     label:       String = "",
     text:        String = "",
@@ -30,33 +37,48 @@ fun TextFieldComponent(
     onDone:              () -> Unit = {},
     enabled: Boolean = true,
     borderColor: Color = MaterialTheme.colorScheme.onSecondary,
-    icon: (@Composable () -> Unit)? = null,
-    keyboardOptions: KeyboardOptions? = KeyboardOptions(imeAction = ImeAction.Done),
+    keyboardOptions: KeyboardOptions? = KeyboardOptions(imeAction = ImeAction.Done)
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
+    val passwordVisible    = rememberSaveable { mutableStateOf(false) }
 
     if (keyboardOptions != null) {
         OutlinedTextField(
-            value         = text,
-            onValueChange = onValueChange,
-            label         = { Text(text = label, color = MaterialTheme.colorScheme.onSecondary) },
-            enabled       = enabled,
-            modifier      = modifier,
-            placeholder   = { Text(text = placeholder, color = MaterialTheme.colorScheme.onSecondary) },
+            modifier             = modifier,
+            value                = text,
+            onValueChange        = { onValueChange.invoke(it) },
+            label                = { Text(text = label, color = MaterialTheme.colorScheme.onSecondary) },
+            enabled              = enabled,
+            placeholder          = { Text(text = placeholder, color = MaterialTheme.colorScheme.onSecondary) },
+            visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
             colors        = TextFieldDefaults.outlinedTextFieldColors(
                 disabledTextColor  = borderColor,
                 focusedBorderColor = borderColor,
                 focusedLabelColor  = borderColor,
                 cursorColor        = borderColor
             ),
-            trailingIcon    = icon,
+            trailingIcon    = {
+                val image = if (passwordVisible.value)
+                     painterResource(id = R.drawable.ic_visibility)
+                else painterResource(id = R.drawable.ic_visibility_off)
+
+                val description = if (passwordVisible.value) "Hide password" else "Show password"
+
+                IconButton(onClick = {passwordVisible.value = passwordVisible.value.not()}){
+                    Icon(
+                        painter            = image,
+                        contentDescription = description,
+                        tint               = MaterialTheme.colorScheme.onSecondary
+                    )
+                }
+            },
             keyboardOptions = keyboardOptions,
             keyboardActions = KeyboardActions(
                 onDone = {
                     keyboardController?.hide()
                     onDone.invoke()
                 }
-            )
+            ),
         )
     }
 }
@@ -71,13 +93,13 @@ fun TextFieldComponent(
     name           = "Dark Mode"
 )
 @Composable
-private fun TextFieldComponentPreview() {
-    val text = remember { mutableStateOf("Valor do campo") }
+private fun TextFieldPasswordComponentPreview() {
+    val text = remember { mutableStateOf("1234567890") }
     MyTestComposeTheme {
-        TextFieldComponent(
-            label           = "Campo Teste",
+        TextFieldPasswordComponent(
+            label           = "Password",
             text            = text.value,
-            placeholder     = "Digite o text",
+            placeholder     = "Digite o password",
             onValueChange   = { text.value = it },
             keyboardOptions = KeyboardOptions(
                 keyboardType   = KeyboardType.Text,
