@@ -32,6 +32,7 @@ import kotlinx.coroutines.launch
 
 import com.example.mytestcompose.ui.components.CountryList
 import com.example.mytestcompose.ui.components.ModalComponent
+import com.example.mytestcompose.ui.components.ModalComponent3
 import com.example.mytestcompose.ui.components.TextFieldComponent
 import com.example.mytestcompose.ui.components.TextFieldPasswordComponent
 import com.example.mytestcompose.ui.components.biometric.isValidBiometric
@@ -149,9 +150,14 @@ fun MainScreen(isPreview: Boolean = false) {
     }
 
     if (openModal.value) {
-        openModal.value = false
-        coroutineScope.launch { showModal.show() }
+        coroutineScope.launch { showModal.show() }.invokeOnCompletion {
+            if (showModal.isVisible.not()) { openModal.value = false }
+        }
+//        ModalComponent3(onDismissRequest = { openModal.value = false }) {
+//            CountryList()
+//        }
     }
+
     ModalComponent(sheetState = showModal) { CountryList() }
 
     if (openBiometric.value) {
