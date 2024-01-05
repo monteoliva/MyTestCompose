@@ -125,7 +125,6 @@ fun MainScreen(isPreview: Boolean = false) {
                     Text(text = "Modal Button Open")
                 }
             }
-
             if (!isPreview) {
                 Row(modifier = Modifier.padding(all = 6.dp)) {
                     if (isValidBiometric()) {
