@@ -9,7 +9,7 @@ Tecnologias utilizadas
 - Jetpack Compose
 - Extensions
 - MVVM Arquitetura
-- BIometric Authentication
+- Biometric Authentication
 
 
 Licença
