@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.mytestcompose"
-        minSdk        = 23
+        minSdk        = 25
         targetSdk     = 34
         versionCode   = 1
         versionName   = "1.0"
