@@ -1,4 +1,4 @@
-# MyTestCompose - Exoplayer with Jetpack Compose
+# MyTestCompose - Test Jetpack Compose
 Projeto POC para testes de Jetpack Compose
 
 
