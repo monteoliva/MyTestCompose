@@ -1,5 +1,5 @@
 # MyTestCompose - Exoplayer with Jetpack Compose
-Projeto POC para testes de Jetpack COmpose
+Projeto POC para testes de Jetpack Compose
 
 
 Tecnologias utilizadas
