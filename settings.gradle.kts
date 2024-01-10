@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyTestCompose"
 include(":app")
+include(":components")

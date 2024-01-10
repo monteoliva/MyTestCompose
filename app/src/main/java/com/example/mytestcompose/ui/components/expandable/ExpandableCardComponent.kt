@@ -95,7 +95,7 @@ fun ExpandableCardComponent(
     name           = "Dark Mode"
 )
 @Composable
-fun ExpandableCardComponentPreview() {
+private fun ExpandableCardComponentPreview() {
     ExpandableCardComponent(
         shape           = RoundedCornerShape(10.dp),
         backgroundColor = MaterialTheme.colorScheme.primary,
