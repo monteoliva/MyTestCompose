@@ -17,6 +17,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 
 import com.example.mytestcompose.ui.theme.MyTestComposeTheme
@@ -33,6 +34,7 @@ fun TextFieldComponent(
     enabled: Boolean = true,
     borderColor: Color = MaterialTheme.colorScheme.onSecondary,
     icon: (@Composable () -> Unit)? = null,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions? = KeyboardOptions(imeAction = ImeAction.Done),
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -47,8 +49,14 @@ fun TextFieldComponent(
                 .onFocusChanged {
                     if (it.hasFocus) { keyboardController?.show() }
                 },
-            placeholder = { Text(text = placeholder, color = MaterialTheme.colorScheme.onSecondary) },
-            colors      = TextFieldDefaults.outlinedTextFieldColors(
+            visualTransformation = visualTransformation,
+            placeholder          = {
+                Text(
+                    text  = placeholder,
+                    color = MaterialTheme.colorScheme.onSecondary
+                )
+            },
+            colors               = TextFieldDefaults.outlinedTextFieldColors(
                 disabledTextColor  = borderColor,
                 focusedBorderColor = borderColor,
                 focusedLabelColor  = borderColor,

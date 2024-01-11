@@ -28,6 +28,9 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.components.extensions.MaskVisualTransformation
+import com.example.components.extensions.NumbersDehault
+import com.example.components.extensions.NumbersDehault.MASK_CEP
 import kotlinx.coroutines.launch
 
 import com.example.mytestcompose.ui.components.CountryList
@@ -48,6 +51,7 @@ fun MainScreen(isPreview: Boolean = false) {
     val openDialog           = rememberSaveable { mutableStateOf(false) }
     val openModal            = rememberSaveable { mutableStateOf(false) }
     val openBiometric        = rememberSaveable { mutableStateOf(false) }
+    val cep                  = remember         { mutableStateOf("") }
     val login                = remember         { mutableStateOf("") }
     val password             = rememberSaveable { mutableStateOf("") }
     val showModal            = rememberModalBottomSheetState(
@@ -64,6 +68,26 @@ fun MainScreen(isPreview: Boolean = false) {
         Column(
             modifier = Modifier.padding(all = 10.dp)
         ) {
+            Row(modifier = Modifier.padding(all = 6.dp)) {
+                TextFieldComponent(
+                    modifier             = Modifier.fillMaxWidth(),
+                    label                = "Cep",
+                    text                 = cep.value,
+                    placeholder          = "Digit numbers only",
+                    visualTransformation = MaskVisualTransformation(MASK_CEP),
+                    onValueChange        = {
+                        if (it.length <= NumbersDehault.INPUT_LENGTH_CEP) {
+                            cep.value = it.filter { it1 -> it1.isDigit() }
+                        }
+                    },
+                    onDone          = {},
+                    onNext          = {},
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Number,
+                        imeAction    = ImeAction.Next
+                    )
+                )
+            }
             Row(modifier = Modifier.padding(all = 6.dp)) {
                 TextFieldComponent(
                     modifier     = Modifier.fillMaxWidth(),

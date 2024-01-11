@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.targets.js.npm.includedRange
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -50,6 +52,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":components"))
+
     // Android X
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.biometric:biometric:1.2.0-alpha05")
