@@ -1,4 +1,4 @@
-package com.example.mytestcompose.ui.components.expandable
+package com.example.components.expandable
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.ColumnScope
@@ -17,9 +17,9 @@ import androidx.compose.ui.unit.dp
 import me.saket.swipe.SwipeAction
 import me.saket.swipe.SwipeableActionsBox
 
-import com.example.mytestcompose.ui.theme.Green300
-import com.example.mytestcompose.ui.theme.MyTestComposeTheme
-import com.example.mytestcompose.ui.theme.Red300
+import com.example.components.core.theme.ComponentComposeTheme
+import com.example.components.core.theme.Green300
+import com.example.components.core.theme.Red300
 
 @Composable
 fun ExpandableSwipeCardItem(
@@ -78,7 +78,7 @@ fun ExpandableSwipeCardItem(
 )
 @Composable
 fun ExpandableSwipeCardItemPreview() {
-    MyTestComposeTheme {
+    ComponentComposeTheme {
         ExpandableSwipeCardItem(
             onSwipeLeft  = {},
             onSwipeRight = {},

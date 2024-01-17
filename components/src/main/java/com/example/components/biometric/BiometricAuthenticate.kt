@@ -1,4 +1,4 @@
-package com.example.mytestcompose.ui.components.biometric
+package com.example.components.biometric
 
 import android.os.Build
 import androidx.annotation.RequiresApi

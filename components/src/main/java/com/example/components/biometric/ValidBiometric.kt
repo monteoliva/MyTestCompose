@@ -1,4 +1,4 @@
-package com.example.mytestcompose.ui.components.biometric
+package com.example.components.biometric
 
 import androidx.biometric.BiometricManager
 import androidx.compose.runtime.Composable

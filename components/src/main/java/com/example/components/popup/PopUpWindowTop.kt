@@ -1,4 +1,4 @@
-package com.example.mytestcompose.ui.components.popup
+package com.example.components.popup
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -21,8 +21,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-import com.example.mytestcompose.ui.theme.MyTestComposeTheme
-import com.example.mytestcompose.ui.theme.StyleTitle
+import com.example.components.core.theme.ComponentComposeTheme
+import com.example.components.core.theme.StyleTitle
 
 @Composable
 fun PopUpWindowTop(
@@ -78,7 +78,7 @@ fun PopUpWindowTop(
 )
 @Composable
 fun PreviewTopPopUpWindow() {
-    MyTestComposeTheme {
+    ComponentComposeTheme {
         PopUpWindowTop(
             cornerSize = 16.dp,
             title      = "Title test"

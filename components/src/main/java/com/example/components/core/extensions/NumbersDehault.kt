@@ -1,4 +1,4 @@
-package com.example.components.extensions
+package com.example.components.core.extensions
 
 object NumbersDehault {
     const val MASK_CEP  = "#####-###"

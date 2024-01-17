@@ -1,4 +1,4 @@
-package com.example.components.theme
+package com.example.components.core.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.geometry.Offset

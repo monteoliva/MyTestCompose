@@ -1,4 +1,4 @@
-package com.example.mytestcompose.ui.components.expandable
+package com.example.components.expandable
 
 import android.content.res.Configuration
 import androidx.compose.animation.animateContentSize

@@ -1,4 +1,4 @@
-package com.example.mytestcompose.ui.components
+package com.example.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-import com.example.mytestcompose.ui.theme.MyTestComposeTheme
+import com.example.components.core.theme.ComponentComposeTheme
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -64,7 +64,7 @@ private fun ModalComponentPreview() {
         confirmValueChange = { it != ModalBottomSheetValue.HalfExpanded },
         skipHalfExpanded   = false
     )
-    MyTestComposeTheme {
+    ComponentComposeTheme {
         ModalComponent (
             sheetState       = showModal,
             isShowDragHandle = true

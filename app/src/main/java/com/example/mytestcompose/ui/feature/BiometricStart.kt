@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 
 import com.example.mytestcompose.R
-import com.example.mytestcompose.ui.components.biometric.BiometricAuthenticate
+import com.example.components.biometric.BiometricAuthenticate
 
 @Composable
 fun BiometricStart(

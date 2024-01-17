@@ -1,4 +1,4 @@
-package com.example.mytestcompose.ui.components
+package com.example.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-import com.example.mytestcompose.ui.theme.MyTestComposeTheme
+import com.example.components.core.theme.ComponentComposeTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,7 +55,7 @@ fun ModalComponent3(
 )
 @Composable
 private fun ModalComponent3Preview() {
-    MyTestComposeTheme {
+    ComponentComposeTheme {
         ModalComponent3( onDismissRequest = {} ) {
             CountryList()
         }

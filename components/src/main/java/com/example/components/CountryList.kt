@@ -1,4 +1,4 @@
-package com.example.mytestcompose.ui.components
+package com.example.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Row
@@ -6,16 +6,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.ModalBottomSheetValue
-import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.mytestcompose.ui.theme.MyTestComposeTheme
+
+import com.example.components.core.theme.ComponentComposeTheme
 
 @Composable
 fun CountryList() {
@@ -68,7 +66,7 @@ fun CountryList() {
 )
 @Composable
 private fun CountryListPreview() {
-    MyTestComposeTheme {
+    ComponentComposeTheme {
         CountryList()
     }
 }

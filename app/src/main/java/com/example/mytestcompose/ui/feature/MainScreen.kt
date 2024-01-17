@@ -28,19 +28,20 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.components.extensions.MaskVisualTransformation
-import com.example.components.extensions.NumbersDehault
-import com.example.components.extensions.NumbersDehault.MASK_CEP
 import kotlinx.coroutines.launch
 
-import com.example.mytestcompose.ui.components.CountryList
-import com.example.mytestcompose.ui.components.ModalComponent
-import com.example.mytestcompose.ui.components.ModalComponent3
-import com.example.mytestcompose.ui.components.TextFieldComponent
-import com.example.mytestcompose.ui.components.TextFieldPasswordComponent
-import com.example.mytestcompose.ui.components.biometric.isValidBiometric
-import com.example.mytestcompose.ui.components.expandable.ExpandableSwipeCardItem
-import com.example.mytestcompose.ui.components.popup.PopUpWindow
+// Components Library
+import com.example.components.core.extensions.MaskVisualTransformation
+import com.example.components.core.extensions.NumbersDehault
+import com.example.components.core.extensions.NumbersDehault.MASK_CEP
+import com.example.components.popup.PopUpWindow
+
+import com.example.components.CountryList
+import com.example.components.ModalComponent
+import com.example.components.TextFieldComponent
+import com.example.components.TextFieldPasswordComponent
+import com.example.components.biometric.isValidBiometric
+import com.example.components.expandable.ExpandableSwipeCardItem
 import com.example.mytestcompose.ui.theme.MyTestComposeTheme
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)

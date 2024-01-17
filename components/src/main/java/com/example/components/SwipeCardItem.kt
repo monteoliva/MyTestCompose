@@ -1,4 +1,4 @@
-package com.example.mytestcompose.ui.components
+package com.example.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
@@ -20,9 +20,9 @@ import androidx.compose.ui.unit.dp
 import me.saket.swipe.SwipeAction
 import me.saket.swipe.SwipeableActionsBox
 
-import com.example.mytestcompose.ui.theme.Green300
-import com.example.mytestcompose.ui.theme.MyTestComposeTheme
-import com.example.mytestcompose.ui.theme.Red300
+import com.example.components.core.theme.ComponentComposeTheme
+import com.example.components.core.theme.Green300
+import com.example.components.core.theme.Red300
 
 @Composable
 fun SwipeCardItem(
@@ -77,7 +77,7 @@ fun SwipeCardItem(
 )
 @Composable
 private fun SwipeCardItemPreview() {
-    MyTestComposeTheme {
+    ComponentComposeTheme {
         SwipeCardItem(
             onSwipeLeft  = {},
             onSwipeRight = {}

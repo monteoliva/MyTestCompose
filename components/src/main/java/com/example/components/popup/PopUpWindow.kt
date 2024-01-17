@@ -1,4 +1,4 @@
-package com.example.mytestcompose.ui.components.popup
+package com.example.components.popup
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 
-import com.example.mytestcompose.ui.theme.MyTestComposeTheme
+import com.example.components.core.theme.ComponentComposeTheme
 
 @Composable
 fun PopUpWindow(
@@ -78,7 +78,7 @@ fun PopUpWindow(
 )
 @Composable
 private fun PopUpWindowPreview() {
-    MyTestComposeTheme {
+    ComponentComposeTheme {
         PopUpWindow (
             title     = "Teste",
             onDismiss = {}
