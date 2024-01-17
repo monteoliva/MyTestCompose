@@ -24,13 +24,13 @@ import com.example.components.core.theme.ComponentComposeTheme
 import com.example.components.core.theme.StyleTitle
 
 @Composable
-fun Progress(
+fun ProgressIndicator(
     text: String = "",
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit = {}
 ) {
     Dialog(
         onDismissRequest = { onDismissRequest.invoke() },
-        DialogProperties(
+        properties       = DialogProperties(
             dismissOnBackPress    = false,
             dismissOnClickOutside = false
         )
@@ -46,14 +46,13 @@ fun Progress(
                 )
         ) {
             Column {
-                CircularProgressIndicator()
-
+//                CircularProgressIndicator()
+//
                 if (text.isNotEmpty()) {
                     Text(
-                        modifier  = Modifier.fillMaxWidth(),
+                        modifier  = Modifier.fillMaxWidth().padding(top = 5.dp),
                         text      = text,
-                        textAlign = TextAlign.Center,
-                        style     = StyleTitle
+                        textAlign = TextAlign.Center
                     )
                 }
             }
@@ -67,13 +66,13 @@ fun Progress(
 )
 @Preview(
     uiMode         = Configuration.UI_MODE_NIGHT_YES,
-    showBackground = true,
+    showBackground = false,
     name           = "Dark Mode"
 )
 @Composable
-private fun ProgressPreview() {
+private fun ProgressIndicatorPreview() {
     ComponentComposeTheme {
-        Progress (
+        ProgressIndicator (
             text = "Loading",
             onDismissRequest = {}
         )
