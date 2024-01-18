@@ -2,60 +2,59 @@ package com.example.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 
 import com.example.components.core.theme.ComponentComposeTheme
-import com.example.components.core.theme.StyleTitle
 
 @Composable
-fun ProgressIndicator(
-    text: String = "",
-    onDismissRequest: () -> Unit = {}
+fun IndeterminateCircularIndicator(
+    cornerRadius: Dp = 16.dp,
+    onDismissRequest: () -> Unit
 ) {
     Dialog(
         onDismissRequest = { onDismissRequest.invoke() },
         properties       = DialogProperties(
-            dismissOnBackPress    = false,
-            dismissOnClickOutside = false
+            usePlatformDefaultWidth = false
         )
     ) {
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier         = Modifier
-                .wrapContentSize(align = Alignment.Center)
-                .padding(all = 4.dp)
-                .background(
-                    color = Color.White,
-                    shape = RoundedCornerShape(size = 8.dp)
-                )
+        Row(
+            modifier = Modifier
+                .background(color = Color.White, shape = RoundedCornerShape(cornerRadius))
+                .padding(all = 20.dp), // inner padding
         ) {
-            Column {
-//                CircularProgressIndicator()
-//
-                if (text.isNotEmpty()) {
-                    Text(
-                        modifier  = Modifier.fillMaxWidth().padding(top = 5.dp),
-                        text      = text,
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
+            CircularProgressIndicator(
+                modifier    = Modifier.wrapContentSize(align = Alignment.Center),
+                color       = MaterialTheme.colorScheme.secondary,
+                strokeWidth = 2.dp
+            )
+
+            Text(
+                modifier = Modifier.padding(top = 10.dp, start = 10.dp),
+                text     = "Please wait...",
+                style    = TextStyle(
+                    color      = Color.Black,
+                    fontSize   = 12.sp,
+                    fontWeight = FontWeight.Normal
+                )
+            )
         }
     }
 }
@@ -72,9 +71,6 @@ fun ProgressIndicator(
 @Composable
 private fun ProgressIndicatorPreview() {
     ComponentComposeTheme {
-        ProgressIndicator (
-            text = "Loading",
-            onDismissRequest = {}
-        )
+        IndeterminateCircularIndicator(onDismissRequest = {})
     }
 }

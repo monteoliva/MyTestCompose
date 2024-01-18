@@ -35,13 +35,14 @@ import com.example.components.core.extensions.MaskVisualTransformation
 import com.example.components.core.extensions.NumbersDehault
 import com.example.components.core.extensions.NumbersDehault.MASK_CEP
 import com.example.components.popup.PopUpWindow
-
 import com.example.components.CountryList
+import com.example.components.IndeterminateCircularIndicator
 import com.example.components.ModalComponent
 import com.example.components.TextFieldComponent
 import com.example.components.TextFieldPasswordComponent
 import com.example.components.biometric.isValidBiometric
 import com.example.components.expandable.ExpandableSwipeCardItem
+
 import com.example.mytestcompose.ui.theme.MyTestComposeTheme
 
 @OptIn(ExperimentalMaterialApi::class, ExperimentalMaterial3Api::class)
@@ -49,12 +50,13 @@ import com.example.mytestcompose.ui.theme.MyTestComposeTheme
 @Composable
 fun MainScreen(isPreview: Boolean = false) {
     val coroutineScope       = rememberCoroutineScope()
-    val openDialog           = rememberSaveable { mutableStateOf(false) }
-    val openModal            = rememberSaveable { mutableStateOf(false) }
-    val openBiometric        = rememberSaveable { mutableStateOf(false) }
-    val cep                  = remember         { mutableStateOf("") }
-    val login                = remember         { mutableStateOf("") }
-    val password             = rememberSaveable { mutableStateOf("") }
+    val openDialog           = rememberSaveable { mutableStateOf( value = false) }
+    val openModal            = rememberSaveable { mutableStateOf( value = false) }
+    val openBiometric        = rememberSaveable { mutableStateOf( value = false) }
+    val isLoading            = rememberSaveable { mutableStateOf( value = false) }
+    val cep                  = remember         { mutableStateOf( value = "") }
+    val login                = remember         { mutableStateOf( value = "") }
+    val password             = rememberSaveable { mutableStateOf( value = "") }
     val showModal            = rememberModalBottomSheetState(
         initialValue       = ModalBottomSheetValue.Hidden,
         confirmValueChange = { it != ModalBottomSheetValue.HalfExpanded },
@@ -151,6 +153,11 @@ fun MainScreen(isPreview: Boolean = false) {
                     Text(text = "Modal Button Open")
                 }
             }
+            Row(modifier = Modifier.padding(all = 6.dp)) {
+                Button(onClick = { isLoading.value = true }) {
+                    Text(text = "Progress Indicator Button Open")
+                }
+            }
             if (!isPreview) {
                 Row(modifier = Modifier.padding(all = 6.dp)) {
                     if (isValidBiometric()) {
@@ -188,6 +195,12 @@ fun MainScreen(isPreview: Boolean = false) {
     if (openBiometric.value) {
         openBiometric.value = false
         BiometricStart()
+    }
+
+    if (isLoading.value) {
+        IndeterminateCircularIndicator() {
+            isLoading.value = false
+        }
     }
 }
 
