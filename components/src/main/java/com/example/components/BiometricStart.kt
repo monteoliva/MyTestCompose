@@ -1,11 +1,10 @@
-package com.example.mytestcompose.ui.feature
+package com.example.components
 
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 
-import com.example.mytestcompose.R
 import com.example.components.biometric.BiometricAuthenticate
 
 @Composable

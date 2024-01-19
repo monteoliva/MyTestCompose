@@ -1,0 +1,5 @@
+<resources>
+    <string name="authenticationTitle">Biometric Authentication</string>
+    <string name="authenticationSubTitle">Log in using your biometric credential</string>
+    <string name="authenticationButtonText">Cancel</string>
+</resources>

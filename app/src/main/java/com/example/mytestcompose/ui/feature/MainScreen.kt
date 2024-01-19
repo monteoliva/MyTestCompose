@@ -28,6 +28,7 @@ import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.components.BiometricStart
 import kotlinx.coroutines.launch
 
 // Components Library
@@ -36,7 +37,7 @@ import com.example.components.core.extensions.NumbersDehault
 import com.example.components.core.extensions.NumbersDehault.MASK_CEP
 import com.example.components.popup.PopUpWindow
 import com.example.components.CountryList
-import com.example.components.IndeterminateCircularIndicator
+import com.example.components.ProgressCircularIndicator
 import com.example.components.ModalComponent
 import com.example.components.TextFieldComponent
 import com.example.components.TextFieldPasswordComponent
@@ -198,7 +199,7 @@ fun MainScreen(isPreview: Boolean = false) {
     }
 
     if (isLoading.value) {
-        IndeterminateCircularIndicator() {
+        ProgressCircularIndicator() {
             isLoading.value = false
         }
     }

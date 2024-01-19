@@ -25,12 +25,11 @@ import androidx.compose.ui.window.DialogProperties
 import com.example.components.core.theme.ComponentComposeTheme
 
 @Composable
-fun IndeterminateCircularIndicator(
-    cornerRadius: Dp = 16.dp,
-    onDismissRequest: () -> Unit
+fun ProgressCircularIndicator(
+    cornerRadius: Dp = 16.dp
 ) {
     Dialog(
-        onDismissRequest = { onDismissRequest.invoke() },
+        onDismissRequest = {},
         properties       = DialogProperties(
             usePlatformDefaultWidth = false
         )
@@ -69,8 +68,8 @@ fun IndeterminateCircularIndicator(
     name           = "Dark Mode"
 )
 @Composable
-private fun ProgressIndicatorPreview() {
+private fun ProgressCircularIndicatorPreview() {
     ComponentComposeTheme {
-        IndeterminateCircularIndicator(onDismissRequest = {})
+        ProgressCircularIndicator()
     }
 }
