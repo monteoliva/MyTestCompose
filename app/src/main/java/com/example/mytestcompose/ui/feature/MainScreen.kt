@@ -199,9 +199,9 @@ fun MainScreen(isPreview: Boolean = false) {
     }
 
     if (isLoading.value) {
-        ProgressCircularIndicator() {
-            isLoading.value = false
-        }
+//        ProgressCircularIndicator() {
+//            isLoading.value = false
+//        }
     }
 }
 
