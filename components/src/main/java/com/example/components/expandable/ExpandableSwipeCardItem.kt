@@ -23,8 +23,8 @@ import com.example.components.core.theme.Red300
 
 @Composable
 fun ExpandableSwipeCardItem(
-    onSwipeLeft:  () -> Unit,
-    onSwipeRight: () -> Unit,
+    onSwipeLeft:  () -> Unit = {},
+    onSwipeRight: () -> Unit = {},
     shownContent:  @Composable (ColumnScope.() -> Unit),
     hiddenContent: @Composable (ColumnScope.() -> Unit)
 ) {
@@ -33,10 +33,10 @@ fun ExpandableSwipeCardItem(
         onSwipe    = { onSwipeLeft.invoke() },
         icon       = {
             Icon(
-                modifier           = Modifier.padding(12.dp),
-                imageVector        = Icons.Filled.Check,
-                contentDescription = null,
-                tint               = Color.White
+                modifier    = Modifier.padding(all = 12.dp),
+                imageVector = Icons.Filled.Check,
+                tint        = Color.White,
+                contentDescription = null
             )
         }
     )
@@ -45,18 +45,18 @@ fun ExpandableSwipeCardItem(
         onSwipe    = { onSwipeRight.invoke() },
         icon       = {
             Icon(
-                modifier           = Modifier.padding(12.dp),
-                imageVector        = Icons.Outlined.Close,
-                contentDescription = null,
-                tint               = Color.White
+                modifier    = Modifier.padding(all = 12.dp),
+                imageVector = Icons.Outlined.Close,
+                tint        = Color.White,
+                contentDescription = null
             )
         }
     )
 
     SwipeableActionsBox(
-        modifier                      = Modifier.padding(4.dp),
-        startActions                  = listOf(reject),
-        endActions                    = listOf(accept),
+        modifier     = Modifier.padding(all = 4.dp),
+        startActions = listOf(reject),
+        endActions   = listOf(accept),
         backgroundUntilSwipeThreshold = Color.Transparent
     )
     {
@@ -67,6 +67,7 @@ fun ExpandableSwipeCardItem(
     }
 }
 
+@Composable
 @Preview(
     name           = "Light Mode",
     showBackground = false
@@ -76,24 +77,25 @@ fun ExpandableSwipeCardItem(
     showBackground = false,
     name           = "Dark Mode"
 )
-@Composable
-fun ExpandableSwipeCardItemPreview() {
+private fun ExpandableSwipeCardItemPreview() {
     ComponentComposeTheme {
         ExpandableSwipeCardItem(
             onSwipeLeft  = {},
             onSwipeRight = {},
             shownContent = {
                 Text(
-                    text     = "Title",
+                    text     = "Sempre mostra",
+                    color    = Color.White,
+                    modifier = Modifier.padding(all = 8.dp)
+                )
+            },
+            hiddenContent = {
+                Text(
+                    text     = "Mostra somente quando expande",
                     color    = Color.White,
                     modifier = Modifier.padding(all = 8.dp)
                 )
             }
-        ) {
-            Text(
-                text  = "Content",
-                color = Color.White
-            )
-        }
+        )
     }
 }

@@ -43,7 +43,7 @@ fun TopBar(
                 )
             }
         },
-        title   = {
+        title = {
             Column {
                 Text(
                     text  = title,

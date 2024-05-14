@@ -61,13 +61,13 @@ dependencies {
     // Jetpack Compose
     implementation(platform("androidx.compose:compose-bom:2024.01.00"))
     implementation("androidx.activity:activity-compose:1.8.2")
-    implementation("androidx.compose.ui:ui:1.6.0")
-    implementation("androidx.compose.ui:ui-graphics:1.6.0")
-    implementation("androidx.compose.ui:ui-tooling-preview:1.6.0")
-    implementation("androidx.compose.material:material:1.6.0")
-    implementation("androidx.compose.material3:material3:1.1.2")
-    implementation("androidx.navigation:navigation-runtime-ktx:2.7.6")
-    implementation("androidx.navigation:navigation-compose:2.7.6")
+    implementation("androidx.compose.ui:ui:1.6.1")
+    implementation("androidx.compose.ui:ui-graphics:1.6.1")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.6.1")
+    implementation("androidx.compose.material:material:1.6.1")
+    implementation("androidx.compose.material3:material3:1.2.0")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("io.coil-kt:coil-compose:2.5.0")
 
     // Paging
@@ -80,7 +80,7 @@ dependencies {
 
     // Swipe
     implementation("me.saket.swipe:swipe:1.2.0")
-    implementation("androidx.wear.compose:compose-material3:1.0.0-alpha16")
+    implementation("androidx.wear.compose:compose-material3:1.0.0-alpha17")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
 

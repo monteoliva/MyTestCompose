@@ -12,6 +12,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -26,7 +27,10 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+
+import com.example.components.core.theme.ComponentComposeTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -34,18 +38,20 @@ fun ExpandableCardComponent(
     modifier: Modifier = Modifier,
     shape: Shape = RoundedCornerShape(size = 10.dp),
     backgroundColor: Color = MaterialTheme.colorScheme.primary,
+    elevation: Dp = 8.dp,
     shownContent:  @Composable (ColumnScope.() -> Unit),
     hiddenContent: @Composable (ColumnScope.() -> Unit)
 ) {
-    val expandedState = rememberSaveable { mutableStateOf(false) }
+    val expandedState = rememberSaveable { mutableStateOf(value = false) }
     val rotationState = animateFloatAsState(
         targetValue = if (expandedState.value) 180f else 0f,
         label       = ""
     )
 
     Card(
-        shape    = shape,
-        modifier = modifier
+        shape     = shape,
+        elevation = CardDefaults.cardElevation(defaultElevation = elevation),
+        modifier  = modifier
             .background(color = Color.Transparent)
             .fillMaxWidth()
             .animateContentSize(
@@ -69,7 +75,7 @@ fun ExpandableCardComponent(
                 }
                 IconButton(
                     modifier = Modifier
-                        .alpha(ContentAlpha.medium)
+                        .alpha(alpha = ContentAlpha.medium)
                         .weight(weight = 1f)
                         .rotate(degrees = rotationState.value),
                     onClick = { expandedState.value = expandedState.value.not() }) {
@@ -84,6 +90,7 @@ fun ExpandableCardComponent(
     }
 }
 
+@Composable
 @Preview(
     name           = "Light Mode",
     showBackground = false
@@ -93,23 +100,25 @@ fun ExpandableCardComponent(
     showBackground = false,
     name           = "Dark Mode"
 )
-@Composable
 private fun ExpandableCardComponentPreview() {
-    ExpandableCardComponent(
-        shape           = RoundedCornerShape(10.dp),
-        backgroundColor = MaterialTheme.colorScheme.primary,
-        shownContent    = {
-            Text(
-                text     = "Sempre mostra",
-                color    = Color.White,
-                modifier = Modifier.padding(all = 8.dp)
-            )
-        }
-    ) {
-        Text(
-            text     = "Mostra somente quando expande",
-            color    = Color.White,
-            modifier = Modifier.padding(all = 8.dp)
+    ComponentComposeTheme {
+        ExpandableCardComponent(
+            shape           = RoundedCornerShape(10.dp),
+            backgroundColor = MaterialTheme.colorScheme.primary,
+            shownContent    = {
+                Text(
+                    text     = "Sempre mostra",
+                    color    = Color.White,
+                    modifier = Modifier.padding(all = 8.dp)
+                )
+            },
+            hiddenContent = {
+                Text(
+                    text     = "Mostra somente quando expande",
+                    color    = Color.White,
+                    modifier = Modifier.padding(all = 8.dp)
+                )
+            }
         )
     }
 }
