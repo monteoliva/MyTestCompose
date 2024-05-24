@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,17 +26,18 @@ import com.example.components.core.theme.ComponentComposeTheme
 
 @Composable
 fun ProgressCircularIndicator(
-    cornerRadius: Dp = 16.dp
+    cornerRadius: Dp = 16.dp,
+    onDismissRequest: () -> Unit = {}
 ) {
     Dialog(
-        onDismissRequest = {},
+        onDismissRequest = { onDismissRequest.invoke() },
         properties       = DialogProperties(
             usePlatformDefaultWidth = false
         )
     ) {
         Row(
             modifier = Modifier
-                .background(color = Color.White, shape = RoundedCornerShape(cornerRadius))
+                .background(color = Color.White, shape = RoundedCornerShape(size = cornerRadius))
                 .padding(all = 20.dp), // inner padding
         ) {
             CircularProgressIndicator(
@@ -70,6 +71,6 @@ fun ProgressCircularIndicator(
 @Composable
 private fun ProgressCircularIndicatorPreview() {
     ComponentComposeTheme {
-        ProgressCircularIndicator()
+        ProgressCircularIndicator() {}
     }
 }

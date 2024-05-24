@@ -39,6 +39,8 @@ import com.example.components.popup.PopUpWindow
 import com.example.components.CountryList
 import com.example.components.ProgressCircularIndicator
 import com.example.components.ModalComponent
+import com.example.components.ModalComponent3
+import com.example.components.ProgressLinearIndicator
 import com.example.components.TextFieldComponent
 import com.example.components.TextFieldPasswordComponent
 import com.example.components.biometric.isValidBiometric
@@ -199,9 +201,9 @@ fun MainScreen(isPreview: Boolean = false) {
     }
 
     if (isLoading.value) {
-//        ProgressCircularIndicator() {
-//            isLoading.value = false
-//        }
+        ProgressCircularIndicator {
+            isLoading.value = false
+        }
     }
 }
 

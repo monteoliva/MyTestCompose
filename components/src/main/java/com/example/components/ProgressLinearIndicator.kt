@@ -31,13 +31,14 @@ fun ProgressLinearIndicator(
     text: String = "",
     cornerRadius: Dp = 16.dp,
     total:    Float = 0.0f,
-    progress: Float = 0.0f
+    progress: Float = 0.0f,
+    onDismissRequest: () -> Unit = {}
 ) {
     val progressF: Float  = (progress / total)
     val progressS: String = "${progress.toInt()}/${total.toInt()}"
 
     Dialog(
-        onDismissRequest = {},
+        onDismissRequest = { onDismissRequest.invoke() },
         properties       = DialogProperties(
             usePlatformDefaultWidth = false
         )
@@ -60,11 +61,11 @@ fun ProgressLinearIndicator(
                 )
             )
             LinearProgressIndicator(
-                progress = progressF,
-                color    = MaterialTheme.colorScheme.secondary,
+//                progress = { progressF },
                 modifier = Modifier
                     .wrapContentSize(align = Alignment.Center)
-                    .padding(top = 5.dp)
+                    .padding(top = 5.dp),
+                color = MaterialTheme.colorScheme.secondary,
             )
             Text(
                 modifier  = Modifier.fillMaxWidth().padding(top = 5.dp),
